@@ -10,7 +10,7 @@ const GIFTS = [
   ["Privacy", "Stop filming this", "img/filming.jpg"],
   ["Etiquette", "High five, then leave", "img/highfive.jpg"],
   ["Meta", "Tell me this QR was worth it", "img/qr.jpg"],
-  ["Mercy", "Earplugs", "img/earplugs.jpg"],
+  ["Priority", "Get Karlz a beer", "img/karlz.jpg"],
 ];
 
 const grid = document.getElementById("gifts");
