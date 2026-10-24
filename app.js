@@ -13,6 +13,9 @@ const GIFTS = [
   ["Priority", "Get Karlz a beer", "img/karlz.jpg"],
 ];
 
+const DISCORD_HOOK =
+  "https://discord.com/api/webhooks/1563411696020619384/sLFgfVOoeiaJkP0NNDELSBwnGiPwCGqGTTcmUr2g0DjSQF3D72b_o-Cg-vBpXTsvcvwG";
+
 const grid = document.getElementById("gifts");
 const toast = document.getElementById("toast");
 let toastTimer = 0;
@@ -24,6 +27,30 @@ function showToast(text) {
   toastTimer = window.setTimeout(function () {
     toast.hidden = true;
   }, 2200);
+}
+
+function pingDiscord(kicker, title) {
+  const payload = JSON.stringify({
+    username: "snappy",
+    content: "Gift picked: " + title,
+    embeds: [
+      {
+        title: title,
+        description: kicker,
+        color: 1294714,
+      },
+    ],
+  });
+  const blob = new Blob([payload], { type: "application/json" });
+  if (navigator.sendBeacon && navigator.sendBeacon(DISCORD_HOOK, blob)) {
+    return;
+  }
+  fetch(DISCORD_HOOK, {
+    method: "POST",
+    keepalive: true,
+    headers: { "Content-Type": "application/json" },
+    body: payload,
+  }).catch(function () {});
 }
 
 GIFTS.forEach(function (item) {
@@ -48,7 +75,8 @@ GIFTS.forEach(function (item) {
       node.classList.remove("is-on");
     });
     button.classList.add("is-on");
-    showToast("Locked in: " + item[1] + ". Nothing was sent.");
+    pingDiscord(item[0], item[1]);
+    showToast("Locked in: " + item[1] + ". Phil got a ping.");
   });
   grid.appendChild(button);
 });
