@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>You received a gift | snappy</title>
+    <meta
+      name="description"
+      content="A joke gift picker. Nothing on this page is active, tracked, or fulfilled."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">snappy</div>
+      <nav class="nav" aria-label="Decorative">
+        <span>Gifts</span>
+        <span>Collections</span>
+        <span>Enterprise</span>
+      </nav>
+      <div class="ghost-btn" aria-disabled="true">Sign in</div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero card">
+        <p class="eyebrow">Gift link</p>
+        <h1>You received a gift. Pick one.</h1>
+        <p class="lede">
+          From a friend who definitely used a conference badge QR code.
+          Nothing here ships, bills, or emails anyone.
+        </p>
+        <div class="meta">
+          <div>
+            <span class="label">From</span>
+            <strong>Phil</strong>
+          </div>
+          <div>
+            <span class="label">Budget</span>
+            <strong>Zero dollars</strong>
+          </div>
+          <div>
+            <span class="label">Fulfillment</span>
+            <strong>Vibes only</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="picker">
+        <div class="picker-head">
+          <h2>Choose your gift</h2>
+          <p>Tap a card. It will look selected. That is the entire feature.</p>
+        </div>
+        <div class="grid" id="gifts"></div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" hidden></div>
+
+    <footer class="foot">
+      <p>
+        Joke page for snappy.fhlipzero.com. Not affiliated with Snappy or any
+        gifting company. No forms. No checkout. No tracking.
+      </p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
