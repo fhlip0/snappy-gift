@@ -18,7 +18,14 @@ const DISCORD_HOOK =
 
 const grid = document.getElementById("gifts");
 const toast = document.getElementById("toast");
+const nameInput = document.getElementById("guest-name");
+const NAME_KEY = "snappy-guest-name";
 let toastTimer = 0;
+
+nameInput.value = window.sessionStorage.getItem(NAME_KEY) || "";
+nameInput.addEventListener("input", function () {
+  window.sessionStorage.setItem(NAME_KEY, nameInput.value);
+});
 
 function showToast(text) {
   toast.hidden = false;
@@ -29,15 +36,28 @@ function showToast(text) {
   }, 2200);
 }
 
-function pingDiscord(kicker, title) {
+function guestName() {
+  return nameInput.value
+    .replace(/[\u0000-\u001f]/g, " ")
+    .replace(/@everyone|@here/gi, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 40);
+}
+
+function pingDiscord(who, kicker, title) {
   const payload = JSON.stringify({
     username: "snappy",
-    content: "Gift picked: " + title,
+    content: who + " wants: " + title,
     embeds: [
       {
         title: title,
         description: kicker,
         color: 1294714,
+        fields: [
+          { name: "Who", value: who, inline: true },
+          { name: "Gift", value: title, inline: true },
+        ],
       },
     ],
   });
@@ -74,9 +94,15 @@ GIFTS.forEach(function (item) {
     document.querySelectorAll(".gift").forEach(function (node) {
       node.classList.remove("is-on");
     });
+    const who = guestName();
+    if (!who) {
+      nameInput.focus();
+      showToast("Put your name first so Phil knows who this is.");
+      return;
+    }
     button.classList.add("is-on");
-    pingDiscord(item[0], item[1]);
-    showToast("Locked in: " + item[1] + ". Phil got a ping.");
+    pingDiscord(who, item[0], item[1]);
+    showToast("Locked in for " + who + ": " + item[1] + ".");
   });
   grid.appendChild(button);
 });

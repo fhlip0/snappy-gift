@@ -8,7 +8,7 @@
       name="description"
       content="A joke gift picker. Tiles ping Discord. Nothing ships or bills."
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=3" />
   </head>
   <body>
     <header class="top">
@@ -47,14 +47,26 @@
 
       <section class="picker">
         <div class="picker-head">
-          <h2>Choose your gift</h2>
-          <p>Tap a card. It will look selected. Phil gets a Discord ping for that tile.</p>
+          <div>
+            <h2>Choose your gift</h2>
+            <p>Put your name, then tap a card. Phil gets a Discord ping for who wants what.</p>
+          </div>
+          <label class="who">
+            <span class="label">Your name</span>
+            <input
+              id="guest-name"
+              type="text"
+              maxlength="40"
+              autocomplete="nickname"
+              placeholder="So Phil knows who"
+            />
+          </label>
         </div>
         <div class="grid" id="gifts"></div>
       </section>
     </main>
 
     <div class="toast" id="toast" hidden></div>
-    <script src="app.js?v=2"></script>
+    <script src="app.js?v=3"></script>
   </body>
 </html>
