@@ -1,16 +1,16 @@
 const GIFTS = [
-  ["Complimentary", "Free beer"],
-  ["Bar service", "Get me a jello shot"],
-  ["Venue request", "Please stop talking so loud"],
-  ["Hospitality", "A quiet five minutes"],
-  ["Ops", "Charge my badge"],
-  ["Social", "Pretend you know me"],
-  ["Hydration", "Water, actually"],
-  ["Wayfinding", "Point me at the bathroom"],
-  ["Privacy", "Stop filming this"],
-  ["Etiquette", "High five, then leave"],
-  ["Meta", "Tell me this QR was worth it"],
-  ["Mercy", "Earplugs"],
+  ["Complimentary", "Free beer", "img/beer.jpg"],
+  ["Bar service", "Get me a jello shot", "img/jello.jpg"],
+  ["Venue request", "Please stop talking so loud", "img/loud.jpg"],
+  ["Hospitality", "A quiet five minutes", "img/quiet.jpg"],
+  ["Ops", "Charge my badge", "img/badge.jpg"],
+  ["Social", "Pretend you know me", "img/pretend.jpg"],
+  ["Hydration", "Water, actually", "img/water.jpg"],
+  ["Wayfinding", "Point me at the bathroom", "img/bathroom.jpg"],
+  ["Privacy", "Stop filming this", "img/filming.jpg"],
+  ["Etiquette", "High five, then leave", "img/highfive.jpg"],
+  ["Meta", "Tell me this QR was worth it", "img/qr.jpg"],
+  ["Mercy", "Earplugs", "img/earplugs.jpg"],
 ];
 
 const grid = document.getElementById("gifts");
@@ -31,7 +31,10 @@ GIFTS.forEach(function (item) {
   button.type = "button";
   button.className = "gift";
   button.innerHTML =
-    '<div class="swatch"></div><div class="body">' +
+    '<img class="swatch" src="' +
+    item[2] +
+    '" alt="">' +
+    '<div class="body">' +
     '<p class="kicker">' +
     item[0] +
     "</p>" +
